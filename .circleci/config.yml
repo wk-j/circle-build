@@ -1,0 +1,18 @@
+version: 2.0
+jobs:
+  docker:
+    - image: mcr.micrsoft.com/dotnet/core/sdk:2.2
+  steps:
+    - checkout
+    - run:
+        name: Restore pacakges
+        command:
+          dotnet restore src/Circle
+    - run:
+        name: Build app
+        command:
+          dotnet build src/Circle
+    - run:
+        name: Run app
+        command:
+          dotnet run
