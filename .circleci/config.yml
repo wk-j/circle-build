@@ -50,15 +50,5 @@ workflows:
   version: 2
   main:
     jobs:
-      - build:
-          # filters:
-          #   tags:
-          #     only: /^\d+\.\d+\.\d+$/
-      - publish-github-release:
-          requires:
-            - build
-          # filters:
-          #   branches:
-          #     ignore: /.*/
-          #   tags:
-          #     only: /^\d+\.\d+\.\d+$/
+      - build
+      - publish-github-release
