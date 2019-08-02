@@ -51,14 +51,14 @@ workflows:
   main:
     jobs:
       - build:
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
+          # filters:
+          #   tags:
+          #     only: /^\d+\.\d+\.\d+$/
       - publish-github-release:
           requires:
             - build
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^\d+\.\d+\.\d+$/
+          # filters:
+          #   branches:
+          #     ignore: /.*/
+          #   tags:
+          #     only: /^\d+\.\d+\.\d+$/
