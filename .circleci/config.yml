@@ -16,9 +16,4 @@ jobs:
       - run:
           name: Build app
           command: |
-            dotnet test src/Circle.Tests
-            dotnet build src/Circle
-      - run:
-          name: Run app
-          command:
-            dotnet run --project src/Circle
+            ~/.dotnet/tools/dotnet-cake -target=Publish
