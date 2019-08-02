@@ -32,3 +32,4 @@ jobs:
 
       - store_artifacts:
           path: /tmp/circle-artifacts
+          destination: circle.zip
