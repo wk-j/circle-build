@@ -23,6 +23,7 @@ jobs:
           name: Build app
           command: |
             ~/.dotnet/tools/dotnet-cake -target=Zip
+            cp .publish/*.zip /tmp/circle-artifacts
 
       - save_cache:
           paths:
@@ -30,4 +31,4 @@ jobs:
           key: nuget-{{ checksum  "src/Circle/Circle.csproj" }}
 
       - store_artifacts:
-          path: .publish/*.zip
+          path: /tmp/circle-artifacts
