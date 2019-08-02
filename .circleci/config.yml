@@ -10,6 +10,10 @@ jobs:
           command:
             dotnet restore src/Circle
       - run:
+          name: Install cake
+          command:
+            dotnet tool install -g cake.tools
+      - run:
           name: Build app
           command: |
             dotnet test src/Circle.Tests
