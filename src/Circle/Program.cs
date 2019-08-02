@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 
 namespace Circle {
     class Program {
-        // @todo Implement main function
         static void Main(string[] args) {
             var a = new {
                 A = 100,
