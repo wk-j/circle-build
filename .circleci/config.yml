@@ -38,6 +38,7 @@ jobs:
           paths:
             - circle.zip
 
+  # @todo Fix Invalid argument: you must set TAG and PATH name.
 
   publish-github-release:
     docker:
