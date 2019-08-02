@@ -50,7 +50,16 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             VERSION="v-$(date +%s)"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} /tmp/circle/circle.zip
+            echo $VERSION
+            ghr \
+              -t ${GITHUB_TOKEN} \
+              -u ${CIRCLE_PROJECT_USERNAME} \
+              -r ${CIRCLE_PROJECT_REPONAME} \
+              -c ${CIRCLE_SHA1} \
+              -delete \
+              -recreate  \
+              ${VERSION} \
+              /tmp/circle/circle.zip
 
 workflows:
   version: 2
