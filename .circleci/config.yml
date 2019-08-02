@@ -58,7 +58,7 @@ jobs:
               -c ${CIRCLE_SHA1} \
               -delete \
               -recreate  \
-              ${VERSION} \
+              $VERSION  \
               /tmp/circle/circle.zip
 
 workflows:
