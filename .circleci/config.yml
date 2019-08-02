@@ -52,6 +52,7 @@ jobs:
             VERSION="v-$(date +%s)"
             echo ${VERSION}
             echo ${CIRCLE_SHA1}
+            ls /tmp/circle
             ghr \
               -t ${GITHUB_TOKEN} \
               -u ${CIRCLE_PROJECT_USERNAME} \
@@ -59,7 +60,7 @@ jobs:
               -c ${CIRCLE_SHA1} \
               -delete \
               -recreate  \
-              $VERSION  \
+              ${VERSION}  \
               /tmp/circle/circle.zip
 
 workflows:
