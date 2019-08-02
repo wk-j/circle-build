@@ -19,5 +19,11 @@ Task("Publish").Does(() => {
     });
 });
 
+Task("Zip")
+    .IsDependentOn("Publish")
+    .Does(() => {
+        Zip(publishDir, $".publish/circle-{version}.zip");
+    });
+
 var target = Argument("target", "Pack");
 RunTarget(target);
