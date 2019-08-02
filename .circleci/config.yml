@@ -5,6 +5,8 @@ jobs:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps:
       - checkout
+      - restore_cache:
+          key: nuget-{{ checksum  "src/Circle/Circle.csproj" }}
       - run:
           name: Restore pacakges
           command:
@@ -17,3 +19,7 @@ jobs:
           name: Build app
           command: |
             ~/.dotnet/tools/dotnet-cake -target=Zip
+      - save_cache:
+          paths:
+            - ~/.nuget/packages
+          key: nuget-{{ checksum  "src/Circle/Circle.csproj" }}
