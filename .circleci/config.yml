@@ -23,7 +23,6 @@ jobs:
           name: Build app
           command: |
             ~/.dotnet/tools/dotnet-cake -target=Zip
-            cp .publish/*.zip /tmp/circle-artifacts
 
       - save_cache:
           paths:
@@ -31,20 +30,26 @@ jobs:
           key: nuget-{{ checksum  "src/Circle/Circle.csproj" }}
 
       - store_artifacts:
-          path: /tmp/circle-artifacts
+          path: .publish
           destination: circle.zip
+
+      - persist_to_workspace:
+          root: .publish
+          paths:
+            - circle.zip
+
 
   publish-github-release:
     docker:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: /tmp/circle-artifacts
+          at: /tmp/zip
       - run:
           name: "Publish Release on GitHub"
           command: |
             VERSION="v-$(date +%s)"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/circle-artifacts
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/zip
 
 workflows:
   version: 2

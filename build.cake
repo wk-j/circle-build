@@ -22,7 +22,7 @@ Task("Publish").Does(() => {
 Task("Zip")
     .IsDependentOn("Publish")
     .Does(() => {
-        Zip(publishDir, $".publish/circle-{version}.zip");
+        Zip(publishDir, $".publish/circle.zip");
     });
 
 var target = Argument("target", "Pack");
