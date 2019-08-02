@@ -11,7 +11,8 @@ jobs:
             dotnet restore src/Circle
       - run:
           name: Build app
-          command:
+          command: |
+            dotnet test src/Circle.Tests
             dotnet build src/Circle
       - run:
           name: Run app
