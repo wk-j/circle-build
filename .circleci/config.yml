@@ -56,7 +56,7 @@ jobs:
               -delete \
               -recreate  \
               ${VERSION}  \
-              /tmp/Z
+              /tmp/Z/*.zip
 
 workflows:
   version: 2
