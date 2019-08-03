@@ -48,6 +48,7 @@ jobs:
           name: "Publish release on GitHub"
           command: |
             VERSION="v-$(date +%s)"
+            ls /tmp/Z
             ghr \
               -t ${GITHUB_TOKEN} \
               -u ${CIRCLE_PROJECT_USERNAME} \
@@ -60,6 +61,7 @@ jobs:
 
 workflows:
   version: 2
+
   main:
     jobs:
       - build
