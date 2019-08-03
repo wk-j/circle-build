@@ -36,7 +36,7 @@ jobs:
       - persist_to_workspace:
           root: .publish
           paths:
-            - Z/*.zip
+            - Z
 
   publish-github-release:
     docker:
