@@ -31,12 +31,11 @@ jobs:
 
       - store_artifacts:
           path: .publish/Z
-          # destination: circle.zip
 
       - persist_to_workspace:
-          root: .publish/Z
-          # paths:
-          #   - circle.zip
+          root: .publish
+          paths:
+            - Z
 
   publish-github-release:
     docker:
