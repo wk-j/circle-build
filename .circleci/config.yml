@@ -30,22 +30,20 @@ jobs:
           key: nuget-{{ checksum  "src/Circle/Circle.csproj" }}
 
       - store_artifacts:
-          path: .publish/circle.zip
-          destination: circle.zip
+          path: .publish/Z
+          # destination: circle.zip
 
       - persist_to_workspace:
-          root: .publish
-          paths:
-            - circle.zip
-
-  # @todo Fix Invalid argument: you must set TAG and PATH name.
+          root: .publish/Z
+          # paths:
+          #   - circle.zip
 
   publish-github-release:
     docker:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: /tmp/circle
+          at: /tmp/Z
       - run:
           name: "Publish Release on GitHub"
           command: |
@@ -61,7 +59,7 @@ jobs:
               -delete \
               -recreate  \
               ${VERSION}  \
-              /tmp/circle/circle.zip
+              /tmp/Z
 
 workflows:
   version: 2
