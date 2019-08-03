@@ -48,6 +48,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             VERSION="v-$(date +%s)"
+            FILE="$(ls /tmp/Z/*.zip)"
             ghr \
               -t ${GITHUB_TOKEN} \
               -u ${CIRCLE_PROJECT_USERNAME} \
@@ -56,7 +57,7 @@ jobs:
               -delete \
               -recreate  \
               ${VERSION}  \
-              "$(ls /tmp/Z/*.zip)"
+              ${FILE}
 
 workflows:
   version: 2
