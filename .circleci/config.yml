@@ -1,5 +1,6 @@
 version: 2.0
 jobs:
+
   build:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
@@ -47,9 +48,6 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             VERSION="v-$(date +%s)"
-            echo ${VERSION}
-            echo ${CIRCLE_SHA1}
-            ls /tmp/circle
             ghr \
               -t ${GITHUB_TOKEN} \
               -u ${CIRCLE_PROJECT_USERNAME} \
